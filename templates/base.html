@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToDo App</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.js"></script>
+</head>
+
+<body style="background-color:whitesmoke">
+
+    <h1 class="ui black button">Todo App</h1>
+
+
+
+    <form action="/add" method='post'>
+        <center>
+            <div>
+                <label class="ui violet circular label" for="title" size="10">Todo Title</label>
+                <br>
+                <input type="text" name="title" placeholder="Enter Todo...">
+                <br>
+                <br>
+                <button class="ui primary button">
+                    Add
+                </button>
+            </div>
+        </center>
+        <div>
+            {% for todo in todo_list %}
+            <div>
+                <p class="ui big header">{{todo.id}}|{{todo.title}}</p>
+
+                {% if todo.complete == False %}
+                <span class="ui orange button">Not Complete</span>
+
+                {% else %}
+                <span class="ui green button">Completed</span>
+                {% endif %}
+                <a class="ui gray button" href="/update/{{todo.id}}">Update</a>
+                <a class="ui red button" href="/delete/{{todo.id}}">Delete</a>
+
+                {% endfor %}
+            </div>
+
+
+</body>
+
+</html>
